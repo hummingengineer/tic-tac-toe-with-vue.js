@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-item-group multiple>
+    <v-container>
+      <v-row v-for="row in 3" :key="row">
+        <v-col v-for="col in 3" :key="col">
+          <v-item v-slot:default="{ active, toggle }">
+            <v-card :color="active ? 'primary' : ''" class="d-flex align-center" dark height="200" @click="toggle">
+              <v-scroll-y-transition>
+                <div v-if="active" class="display-3 flex-grow-1 text-center">
+                  {{ currentPlayer }}
+                </div>
+              </v-scroll-y-transition>
+            </v-card>
+          </v-item>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-item-group>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'home',
-  components: {
-    HelloWorld
+
+  data: function () {
+    return {
+      currentPlayer: 'X'
+    }
   }
+
 }
 </script>
+
+<style>
+
+</style>
