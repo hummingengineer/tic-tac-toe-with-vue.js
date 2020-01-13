@@ -1,5 +1,6 @@
 <template>
   <v-container>
+
     <v-row>
       <v-col>
         <div class="text-center display-1"><span style="color: red">{{ currentPlayer }}</span> 플레이어의 차례입니다</div>
