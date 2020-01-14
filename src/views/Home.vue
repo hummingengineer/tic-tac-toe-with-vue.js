@@ -11,10 +11,10 @@
       <v-row v-for="row in 3" :key="row">
         <v-col v-for="col in 3" :key="col">
           <v-item v-slot:default="{ active, toggle }">
-            <v-card :color="active ? 'primary' : ''" class="d-flex align-center" dark height="200" @click="toggle(); clickSquare()">
+            <v-card :color="active ? 'primary' : ''" class="d-flex align-center" dark height="200" @click="toggle(); clickSquare(row, col)">
               <v-scroll-y-transition>
                 <div v-if="active" class="display-3 flex-grow-1 text-center">
-                  {{ currentPlayer }}
+                  {{ squares[row - 1][col - 1] }}
                 </div>
               </v-scroll-y-transition>
             </v-card>
@@ -32,12 +32,18 @@ export default {
 
   data: function () {
     return {
-      currentPlayer: 'X'
+      currentPlayer: 'X',
+      squares: [
+        Array(3).fill(null),
+        Array(3).fill(null),
+        Array(3).fill(null)
+      ]
     }
   },
 
   methods: {
-    clickSquare: function () {
+    clickSquare: function (row, col) {
+      this.squares[row - 1][col - 1] = this.currentPlayer
       this.currentPlayer === 'X' ? this.currentPlayer = 'O' : this.currentPlayer = 'X'
     }
   }
