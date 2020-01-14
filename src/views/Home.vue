@@ -27,7 +27,7 @@
       <v-card>
         <v-card-title>{{ winPlayer }} 플레이어가 승리하였습니다!</v-card-title>
         <v-card-actions>
-          <v-btn color="green darken-1" text @click="dialog = false">
+          <v-btn color="green darken-1" text @click="endGame">
             확인
           </v-btn>
         </v-card-actions>
@@ -63,6 +63,10 @@ export default {
     },
     isWin: function () {
       //
+    },
+    endGame: function () {
+      this.dialog = false
+      window.location.reload(true)
     }
   }
 
