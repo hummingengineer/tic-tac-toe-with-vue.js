@@ -57,12 +57,16 @@ export default {
   methods: {
     clickSquare: function (row, col, toggle) {
       this.squares[row - 1][col - 1] = this.currentPlayer
-      if (this.isWin()) this.dialog = true
+      if (this.isWin()) { this.winPlayer = this.currentPlayer; this.dialog = true }
       toggle()
       this.currentPlayer === 'X' ? this.currentPlayer = 'O' : this.currentPlayer = 'X'
     },
     isWin: function () {
-      //
+      for (let i = 0; i < 3; i++) if (this.squares[i][0] && this.squares[i][0] === this.squares[i][1] && this.squares[i][0] === this.squares[i][2]) return true
+      for (let j = 0; j < 3; j++) if (this.squares[0][j] && this.squares[0][j] === this.squares[1][j] && this.squares[0][j] === this.squares[2][j]) return true
+      if (this.squares[0][0] && this.squares[0][0] === this.squares[1][1] && this.squares[0][0] === this.squares[2][2]) return true
+      if (this.squares[0][2] && this.squares[0][2] === this.squares[1][1] && this.squares[0][2] === this.squares[2][0]) return true
+      return false
     },
     endGame: function () {
       this.dialog = false
